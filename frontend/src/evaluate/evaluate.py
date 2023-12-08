@@ -49,13 +49,13 @@ def evaluate_input(unique_data_path: str, all_data_path: str, endpoint: object) 
         min_value=min((unique_df["time_metro"])),
         max_value=max((unique_df["time_metro"])),
     )
-    floor = st.sidebar.slider(
-        "Этаж", min_value=min((unique_df["floor"])), max_value=max((unique_df["floor"]))
-    )
     attic = st.sidebar.slider(
         "Количество этажей в доме",
-        min_value=min(unique_df["attic"]),
+        min_value=min(unique_df["attic"]) + 1,
         max_value=max(unique_df["attic"]),
+    )
+    floor = st.sidebar.slider(
+        "Этаж", min_value=min((unique_df["floor"])), max_value=attic
     )
     square = st.sidebar.slider(
         "Площадь квартиры",
@@ -110,8 +110,8 @@ def evaluate_input(unique_data_path: str, all_data_path: str, endpoint: object) 
         "area": area,
         "district": district,
         "time_metro": time_metro,
-        "floor": floor,
         "attic": attic,
+        "floor": floor,
         "square": square,
         "transport_type": transport_type,
         "Vanna": bathtub,
